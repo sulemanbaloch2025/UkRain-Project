@@ -1,0 +1,33 @@
+{
+  "name": "refugee-aid",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "",
+  "author": "",
+  "scripts": {
+    "start": "concurrently --kill-others \"npm run build:watch\" \"npm run dev\" \"npm run sass:watch\"",
+    "sass:watch": "sass --watch scss/main.scss css/style.css",
+    "dev": "http-server -o /dist/en",
+    "build": "node ./scripts/build.js",
+    "build:watch": "nodemon ./scripts/build.js -e js,html,md,css --ignore index.html --ignore dist/",
+    "build:prod": "node ./scripts/build.js --prod",
+    "test-labels": "node ./scripts/checks/check-labels.js",
+    "ftp-push": "node ./scripts/upload.js",
+    "upload": "npm run build:prod && npm run ftp-push"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "csv": "^6.0.5",
+    "dotenv": "^16.0.0",
+    "exec": "^0.2.1",
+    "fs-extra": "^10.0.1",
+    "ftp": "^0.3.10",
+    "google-spreadsheet": "^3.2.0",
+    "http-server": "^14.1.0",
+    "marked": "^4.0.12",
+    "nodemon": "^2.0.15",
+    "sass": "^1.49.9"
+  }
+}
